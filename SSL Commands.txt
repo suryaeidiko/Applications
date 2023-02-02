@@ -1,0 +1,69 @@
+  IntegrationServer --name INSERVER --work-dir "C:\IntegrationServer"
+  (create IntegrationServer)
+  
+  
+  IntegrationServer --work-dir "C:\IntegrationServer"
+  (Start IntegrationServer)
+
+
+⦁	COMMANDS :
+  1.mqsireportproperties BR  -o ComIbmJVMManager -a -e EG 
+  2.mqsichangeproperties BR -e EG  -o ComIbmJVMManager -n keystoreFile -v "C:\Users\Sreenivas Bandaru\Documents\SSL\Keystore\key.jks"
+  3.mqsichangeproperties BR -e EG  -o ComIbmJVMManager -n truststoreFile -v "C:\Users\Sreenivas Bandaru\Documents\SSL\Truststore\trust.jks"
+  4.mqsichangeproperties BR -e EG -o ComIbmJVMManager -n keystorePass -v EG::keystorePass
+  5.mqsisetdbparms BR -n EG::keystorePass -u ignore -p sarasu10
+  6.mqsichangeproperties BR -e EG -o ComIbmJVMManager -n truststorePass -v EG::truststorePass
+  7.mqsisetdbparms BR -n EG::truststorePass -u ignore -p sarasu10
+  8.NODE - Restart
+
+	Node
+      ---------
+
+⦁	COMMANDS :
+1.	mqsichangeproperties Node -o BrokerRegistry -n brokerKeystoreFile -v "C:\ssl2\2key\suryakey.jks"
+2.	mqsisetdbparms Node -n brokerKeystore::password -u ignore -p sarasu10 (password entered at the time of keystore file creation)
+3.	mqsichangeproperties Node -o BrokerRegistry -n brokerTruststoreFile -v "C:\ssl2\2trust\trust.jks"
+4.	mqsisetdbparms Node -n brokerTruststore::password -u ignore -p sarasu10 (password entered at the time of Truststorestore file creation)
+5.	mqsistop BrokerName& mqsistart BrokerName
+
+
+
+
+
+       INDEPENDENT INTEGRATION SERVER:
+
+            setdbparms command:
+
+                 Mqsisetdbparms -w path -n odbc::<dsnname> -u username -p password
+
+                   Mqsicvp -w path -n <dsnname>
+
+                      -w means → Independent Integration server path
+
+
+
+ ESQL TO OVERRIDE NODE PROPERTIES;
+
+           SOAP REQUEST:
+
+                  SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL = newUrl;
+
+           REST REQUEST:
+
+                  SET OutputLocalEnvironment.Destination.REST.Request.BaseURL = 'new url’;
+
+          HTTP REQUEST:
+
+                  SET OutputLocalEnvironment.Destination.HTTP.RequestURL = newUrl;
+
+           MQ QNAME:
+
+                  SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName='OUTPUT1';
+ 
+           MQ QMAN:
+
+                 SET OutputLocalEnvironment.Destination.MQ.DestinationData.QueueManager='QMAN';
+
+           ROUTE NODE:
+
+                 SET OutputLocalEnvironment.Destination.RouterList.DestinationData."label" = newLabel;

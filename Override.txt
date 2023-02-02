@@ -1,0 +1,27 @@
+
+
+ESQL TO OVERRIDE NODE PROPERTIES;
+
+SOAP REQUEST:
+
+ SET OutputLocalEnvironment.Destination.SOAP.Request.Transport.HTTP.WebServiceURL = newUrl;
+
+REST REQUEST:
+
+SET OutputLocalEnvironment.Destination.REST.Request.BaseURL = 'new url’;
+
+HTTP REQUEST:
+
+SET OutputLocalEnvironment.Destination.HTTP.RequestURL = newUrl;
+
+MQ QNAME:
+
+SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName='OUTPUT1';
+
+MQ QMAN:
+
+SET OutputLocalEnvironment.Destination.MQ.DestinationData.QueueManager='QMAN';
+
+ROUTE NODE:
+
+SET OutputLocalEnvironment.Destination.RouterList.DestinationData."label" = newLabel;

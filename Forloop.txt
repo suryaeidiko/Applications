@@ -1,0 +1,27 @@
+FOR --> correlation_name --> AS --> field_reference --> DO --> statements --> END --> FOR
+
+Example
+--------
+CREATE PROCEDURE CopyEntireMessage() BEGIN
+		
+		DECLARE i INTEGER 1;
+		
+		DECLARE XML2 REFERENCE to InputRoot.XMLNSC.Root;
+		FOR sourse AS InputRoot.XMLNSC.Root.*[] DO
+		SET OutputRoot.JSON.Data.Details[i].Ename=sourse.Ename;
+		SET OutputRoot.JSON.Data.Details[i].Eid=sourse.Eid;
+		SET OutputRoot.JSON.Data.Details[i].Dept=sourse.Dept;
+		SET OutputRoot.JSON.Data.Details[i].Deptno=sourse.Deptno;	
+		SET i=i+1;
+		END FOR;
+
+
+
+
+
+
+
+
+
+Email output node PDF
+https://ibmintegrationbus.files.wordpress.com/2019/06/email-output-node.pdf

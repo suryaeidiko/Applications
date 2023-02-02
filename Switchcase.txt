@@ -1,0 +1,18 @@
+Case
+  block1
+  Condition
+  block2
+  Condition...
+
+Example
+---------
+DECLARE i INTEGER 2;
+		DECLARE surya REFERENCE to InputRoot.XMLNSC.Root;
+		CASE
+		WHEN i = 1 THEN
+			SET OutputRoot.XMLNSC.Result.Name = surya.Emp.Ename;
+		WHEN i = 2 THEN
+			SET OutputRoot.XMLNSC.Result.Eid = surya.Emp.Eid;
+		WHEN i = 3 THEN
+			SET OutputRoot.XMLNSC.Result.Dept = surya.Emp.Dept;
+		END CASE;

@@ -1,0 +1,31 @@
+WHILE --> condition --> DO  --> statements  --> END WHILE
+
+Example
+--------
+
+DECLARE i INTEGER;
+		SET i = 1;
+		WHILE i<5 DO
+		SET i=i+1;
+		SET OutputRoot.XMLNSC.data=i;
+		END WHILE;
+
+Perfect Example
+----------------
+
+CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE i INTEGER 1;
+		
+		DECLARE var REFERENCE TO InputRoot.XMLNSC.Root;
+		
+		WHILE LASTMOVE (var) DO
+			 
+			 SET OutputRoot.JSON.Data.details.name = var.Emp.Ename;
+			 SET OutputRoot.JSON.Data.details.eid = var.Emp.Eid;
+			  SET OutputRoot.JSON.Data.details.Dept = var.Emp.Dept;
+			   SET OutputRoot.JSON.Data.details.Deptno = var.Emp.Deptno;
+			   
+			   SET i=i+1;
+			   MOVE var NEXTSIBLING;
+			
+		END WHILE;

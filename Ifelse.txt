@@ -1,0 +1,15 @@
+
+Example
+--------
+
+DECLARE Name REFERENCE to InputRoot.XMLNSC.Name;
+		DECLARE Eid REFERENCE to InputRoot.XMLNSC.Eid;
+		IF Eid = 954 THEN
+			SET Name = 'Surya';
+		ELSEIF Eid = 953 THEN
+			SET Name = 'Prakash';
+		else SET Name = Null;
+		END IF;
+		SET OutputRoot.JSON.Data.Result=Name;
+		SET OutputRoot.JSON.Data.Result2=Eid;
+	END;

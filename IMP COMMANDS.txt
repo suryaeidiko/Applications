@@ -1,0 +1,36 @@
+				
+				CALLABLE NODES
+			     --------------------
+
+
+-->  iibcreateswitchcfg /output Path_IN_CDRIVE
+
+-->  iibswitch create switch /config C:\call\switch.json
+
+-->  mqsichangeproperties Surya -e S -o ComIbmIIBSwitchManager -n agentXConfigFile -p C:\call\agentx.json
+
+
+
+				BASIC AUTHINTICATION
+			      -------------------------
+
+ -->  mqsivault Node1 --create --vault-key BASICVAULTKEY
+ -->  mqsistart Node1 --vault-key BASICVAULTKEY
+ -->  mqsicredentials Node1 -e Server --create --credential-type local --credential-name Surya --vault-key BASICVAULTKEY --username Surya --password sarasu10
+ 
+
+
+
+
+
+
+
+
+
+
+BIP9382I: Generated the self-signed certificate file 'C:\callable\adminClient.p12'.
+BIP9383I: Generated the switch configuration file 'C:\callable\switch.json'.
+BIP9384I: Generated the agentx configuration file 'C:\callable\agentx.json'.
+
+
+
