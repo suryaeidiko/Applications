@@ -1,0 +1,33 @@
+
+
+CREATE PROCEDURE CopyEntireMessage() BEGIN
+		DECLARE rfh1 CHARACTER;
+		DECLARE rfh BLOB InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET rfh1 = CAST(rfh as char);
+		SET OutputRoot.MQRFH2.usr.var = rfh1;
+		SET OutputRoot.JSON.Data.Result.Name = InputRoot.XMLNSC.Root.Emp.Ename;
+		SET OutputRoot.JSON.Data.Result.Dept = InputRoot.XMLNSC.Root.Emp.Dept;
+		SET OutputRoot.JSON.Data.Result.Id = InputRoot.XMLNSC.Root.Emp.Eid;
+	END;
+
+
+
+TO Store RequestIdentifier
+
+CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier =CAST(InputRoot.MQRFH2.usr.var as BLOB);
+
+
+
+
+
+
+
+
+
+   PUB_SUB
+=============
+
+ 		SET OutputRoot.MQRFH2.psc.PubOpt = 'Local';       --  SYNTAX
+		SET OutputRoot.MQRFH2.psc.Topic = 'TEST';         --  TOPIC STRING
+		SET OutputRoot.MQRFH2.psc.Command = 'Publish';    --  SYNTAX
