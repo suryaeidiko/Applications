@@ -1,0 +1,34 @@
+package com.gc;
+import com.ibm.broker.plugin.MbGlobalMap;
+public class GlobalCache
+{
+	public static String MyMap = "mymap";
+	public static void loadcache(String key , byte[] val)
+	{
+		try{
+			MbGlobalMap globalMap = MbGlobalMap.getGlobalMap(MyMap);
+			if(globalMap.containsKey(key)){
+				globalMap.update(key, val);
+			}
+			else {
+				globalMap.put(key, val);
+			}			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}	
+    }
+	
+	public static byte[] getcache(String key) 
+	{
+		byte[] val = null;
+		try {
+			MbGlobalMap globalMap = MbGlobalMap.getGlobalMap(MyMap);			
+			 val =  (byte[]) globalMap.get(key);	
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return val;
+	}
+}
